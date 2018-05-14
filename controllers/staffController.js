@@ -11,7 +11,7 @@ let Staff = require('../models/staff');
 let Appuser = require('../models/appuser');
 let Chat = require('../models/chat');
 let Place = require('../models/place');
-let DeletedUser = require('../models/DeletedUser');
+let DeletedUser = require('../models/deleteduser');
 
 // Display list of all Authors.
 // Insert Staffs
