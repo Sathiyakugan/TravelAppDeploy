@@ -22,29 +22,24 @@
     <!--===============================================================================================-->
 </head>
 <body>
-<%- messages('message', locals) %>
+
 
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
 
 
-            <!--!= messages('message', locals)-->
-            <!--<% if(typeof error == "undefined"){ %>-->
-            <!--<% } else { %>-->
-            <!--<% errors.forEach(function () { %>-->
-            <!--<div class="alert alert-success">-->
-            <!--<strong>Success!</strong> <%= error.msg %>-->
-            <!--</div>-->
-            <!--<% }) %>-->
-            <!--<% } %>-->
+
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="/images/img-01.png" alt="IMG">
+            </div>
 
 
             <form class="login100-form validate-form" action="/login" method="post">
 					<span class="login100-form-title">
 						Member Login
 					</span>
-
+                <%- messages('message', locals) %>
                 <div class="wrap-input100 validate-input" data-validate="Password is required">
                     <input class="input100" type="text" name="username" placeholder="username">
                     <span class="focus-input100"></span>
@@ -90,6 +85,8 @@
 
 <!--===============================================================================================-->
 <script src="/scripts/login/jquery-3.2.1.min.js"></script>
+
+<script src="/scripts/myscripts.js"></script>
 <!--===============================================================================================-->
 <script src="/scripts/popper.min.js"></script>
 <script src="/scripts/bootstrap.min.js"></script>
@@ -104,6 +101,7 @@
 </script>
 <!--===============================================================================================-->
 <script src="/scripts/login/main.js"></script>
+
 
 </body>
 </html>
