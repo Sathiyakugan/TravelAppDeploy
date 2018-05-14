@@ -1,0 +1,66 @@
+<div class="form-row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Chat
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <header class="chat-header">
+                                    <div class="h3 chat-title">Chat
+                                        <small class="chat-status pull-right"><strong>Status</strong>:
+                                            <span id="chat-status-message" class="alert alert-success">loading...</span>
+                                        </small>
+                                    </div>
+                                </header>
+
+                                <div class="form-horizontal chat-form">
+                                    <div class="panel panel-default ">
+                                        <div class="panel-body chat-display">
+                                            <p class="text-muted chat-text">Welcome...add your message using the form
+                                                above</p>
+                                            <% chats.forEach(function (chat) { %>
+                                            <% var classname; %>
+                                            <% if (username == chat.username) {
+                                                var classname = 'alert alert-dark';
+                                            } else {
+                                                var classname = 'alert alert-info';
+                                            } %>
+                                            <p class="<%= classname %>">
+                                                <strong><%= chat.username %></strong>: <%= chat.message %> </p>
+                                            <% }) %>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="chat-message" class="col-sm-2 control-label">Message</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" placeholder="Enter a message, then press enter"
+                                                   class="form-control" id="chat-message" rows="2" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="chat-username" class="col-sm-2 control-label">Name</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" value="<%= username; %>"
+                                                   id="chat-username" placeholder="Enter your name" disabled>
+                                        </div>
+                                    </div>
+
+
+                                    </form>
+
+
+                                </div><!-- form-horizontal -->
+                            </div> <!-- col-sm-12 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

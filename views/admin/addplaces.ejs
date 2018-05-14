@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/template/head.ejs %>
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<% include nav.ejs %>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">My Dashboard</li>
+        </ol>
+        <!-- Icon Cards-->
+        <%- messages('message', locals) %>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">Register an Account</div>
+                    <div class="card-body">
+                        <form action="/admin/places/add" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Search place</label>
+                                    <input class="form-control" id="autocomplete" name="place"
+                                           placeholder="Enter your address"
+                                           onFocus="geolocate()" type="text">
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputName">Lattitude</label>
+                                        <input class="form-control" id="latitude" name="latitude" type="text"
+                                               aria-describedby="nameHelp" placeholder="Enter Lattitude">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputLastName">Longitude</label>
+                                        <input class="form-control" id="longitude" name="longitude" type="text"
+                                               aria-describedby="nameHelp" placeholder="Enter Longitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Vincity</label>
+                                <input class="form-control" id="vicinity" name="vicinity" type="text"
+                                       aria-describedby="emailHelp" placeholder="Vicinity">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Place Type</label>
+                                <select class="form-control" id="placetype" name="placetype">
+                                    <option value="airport">SelectType</option>
+                                    <option value="airport">Airport</option>
+                                    <option value="hospital">Hospital</option>
+                                    <option value="museum">museum</option>
+                                    <option value="natural_place">Natural Place</option>
+                                    <option value="park">Park</option>
+                                    <option value="restaurant">Restaurant</option>
+                                    <option value="temple">Temple</option>
+                                    <option value="wifi">Wifi</option>
+                                    <option value="zoo">Zoo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Country</label>
+                                <input class="form-control" id="country" name="country" type="text"
+                                       aria-describedby="emailHelp" placeholder="country">
+                                <!--<select class="form-control" id="country" name="country">-->
+                                <!--<option>Sri Lanka</option>-->
+                                <!--<option>India</option>-->
+                                <!--<option>Sri Lanka</option>-->
+                                <!--</select>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputPassword1">Choose Picture</label>
+                                        <input type="file" class="form-control-file" id="picture"
+                                               onchange="readURL(this)" name="file">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" id="displaypicture"
+                                             class="img-rounded" alt="Cinque Terre">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <label for="exampleInputPassword1">Description</label>
+                                        <textarea class="form-control" rows="5" id="description" name="description"
+                                                  placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Chart Example-->
+            <!-- Example DataTables Card-->
+        </div>
+        <!-- /.content-wrapper-->
+        <% include ../partials/template/footer.ejs %>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <% include ../partials/template/logout.ejs %>
+        <!-- Bootstrap core JavaScript-->
+
+        <script>
+            // This example displays an address form, using the autocomplete feature
+            // of the Google Places API to help users fill in the information.
+
+            // This example requires the Places library. Include the libraries=places
+            // parameter when you first load the API. For example:
+            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+            var placeSearch, autocomplete;
+            var latitude = document.querySelector('#latitude');
+            var longitude = document.querySelector('#longitude');
+            var vincity = document.querySelector('#vicinity');
+            var country = document.querySelector('#country');
+
+
+            function initAutocomplete() {
+                // Create the autocomplete object, restricting the search to geographical
+                // location types.
+                autocomplete = new google.maps.places.Autocomplete(
+                    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+                    {types: ['geocode']});
+
+                // When the user selects an address from the dropdown, populate the address
+                // fields in the form.
+                autocomplete.addListener('place_changed', fillInAddress);
+            }
+
+            function fillInAddress() {
+                // Get the place details from the autocomplete object.
+                var place = autocomplete.getPlace();
+
+//                for (var component in componentForm) {
+//                    document.getElementById(component).value = '';
+//                    document.getElementById(component).disabled = false;
+//                }
+
+                // Get each component of the address from the place details
+                // and fill the corresponding field on the form.
+                latitude.value = place.geometry.location.lat();
+                longitude.value = place.geometry.location.lng();
+                country.value = place.address_components[place.address_components.length - 1].long_name;
+                vincity.value = place.vicinity;
+                console.log(place.vicinity);
+
+
+//                for (var i = 0; i < place.address_components.length; i++) {
+//                    var addressType = place.address_components[i].types[0];
+//                    if (componentForm[addressType]) {
+//                        var val = place.address_components[i][componentForm[addressType]];
+//                        document.getElementById(addressType).value = val;
+//                    }
+//                }
+            }
+
+            // Bias the autocomplete object to the user's geographical location,
+            // as supplied by the browser's 'navigator.geolocation' object.
+            function geolocate() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var geolocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        var circle = new google.maps.Circle({
+                            center: geolocation,
+                            radius: position.coords.accuracy
+                        });
+                        autocomplete.setBounds(circle.getBounds());
+                    });
+                }
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzGr76JWzjLNpH222aZs4__OZdebkI_jY&libraries=places&callback=initAutocomplete"
+                async defer></script>
+
+        <% include ../partials/template/scripts.ejs %>
+    </div>
+</body>
+
+</html>

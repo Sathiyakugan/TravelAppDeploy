@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/template/head.ejs %>
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<% include nav.ejs %>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">My Dashboard</li>
+        </ol>
+        <!-- Icon Cards-->
+        <%- messages('message', locals) %>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">Register an Account</div>
+                    <div class="card-body">
+                        <form action="/admin/staffs/add" method="post">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputName">First name</label>
+                                        <input class="form-control" id="name" name="name" type="text"
+                                               aria-describedby="nameHelp" placeholder="Enter first name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputLastName">Last name</label>
+                                        <input class="form-control" id="lastname" name="lastname" type="text"
+                                               aria-describedby="nameHelp" placeholder="Enter last name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input class="form-control" id="username" name="username" type="text"
+                                       aria-describedby="emailHelp" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input class="form-control" id="email" name="email" type="email"
+                                       aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input class="form-control" id="Password" name="password" type="password"
+                                               placeholder="Password">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleConfirmPassword">Confirm password</label>
+                                        <input class="form-control" id="Password2" name="password2" type="password"
+                                               placeholder="Confirm password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <label for="exampleInputPassword1">Address</label>
+                                        <textarea class="form-control" rows="5" id="address" name="address"
+                                                  placeholder="address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Chart Example-->
+            <!-- Example DataTables Card-->
+        </div>
+        <!-- /.content-wrapper-->
+        <% include ../partials/template/footer.ejs %>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <% include ../partials/template/logout.ejs %>
+        <!-- Bootstrap core JavaScript-->
+        <% include ../partials/template/scripts.ejs %>
+    </div>
+</body>
+
+</html>
